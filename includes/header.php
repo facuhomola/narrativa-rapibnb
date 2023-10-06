@@ -15,10 +15,10 @@
             <a class="nav-link active" aria-current="page" href="/narrativa-rapibnb/index.php">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Iniciar Sesión</a>
+            <a class="nav-link" href="/narrativa-rapibnb/bd/login.php">Iniciar Sesión</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Registrarse</a>
+            <a class="nav-link" href="/narrativa-rapibnb/bd/registrar.php">Registrarse</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
