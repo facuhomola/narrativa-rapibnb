@@ -31,11 +31,13 @@ if (!isset($user)) {
 <!--Fin cabecera-->
 
 <section>
-  <form class="form-register" action="validar.php" method="post" name="form" id="form">
+  <form class="form-register" enctype="multipart/from-data" autocomplete="off" action="validar.php" method="post" name="form" id="form">
   <h4>Formulario Registro - Complete los campos solicitados</h4>
   <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre y Apellido">
     <input class="controls" type="number" name="edad" id="edad" placeholder="Edad">
     <input type="text" class="controls" name="telefono" id="telefono" placeholder="Teléfono">
+    <textarea class="controls" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="5"></textarea>
+    Archivo <input type="file" class="controls" name="archivo" id="archivo">
     <input type="text" name="user" placeholder="Usuario" class="controls">
     <input type="password" name="pass" placeholder="Contraseña" class="controls">
     <input class="botons" type="submit" value="Registrar">  
