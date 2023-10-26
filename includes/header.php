@@ -1,3 +1,11 @@
+<?php
+
+$conexion = mysqli_connect("localhost", "root", "", "rapibnb"); //para conectar a la base de datos
+
+session_start();
+
+?>
+
 <nav class="navbar navbar-dark bg-dark" id="navbarmenu">
   <div class="container-fluid">
     <a class="navbar-brand" href="/narrativa-rapibnb/index.php">RapiBnB - Alquileres</a>
@@ -14,12 +22,30 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/narrativa-rapibnb/index.php">Inicio</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/narrativa-rapibnb/bd/login.php">Iniciar Sesión</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/narrativa-rapibnb/bd/registrar.php">Registrarse</a>
-          </li>
+          <?php
+          if (!isset($_SESSION['user'])) {
+            ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/narrativa-rapibnb/bd/login.php">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/narrativa-rapibnb/bd/registrar.php">Registrarse</a>
+            </li>
+          <?php
+          }else{
+          ?>
+            <li class="nav-item">
+              <a class="nav-link" href="/narrativa-rapibnb/perfil.php">Mi perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/narrativa-rapibnb/nuevapubli.php">Nueva Publicación</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/narrativa-rapibnb/bd/logout.php">Cerrar Sesión</a>
+            </li>
+          <?php
+          }
+          ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Más opciones
