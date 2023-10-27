@@ -38,7 +38,7 @@ session_start();
               <a class="nav-link" href="/narrativa-rapibnb/perfil.php">Mi perfil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/narrativa-rapibnb/nuevapubli.php">Nueva Publicación</a>
+              <a class="nav-link" href="/narrativa-rapibnb/alquiler/nuevoalquiler.php">Nueva Publicación</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/narrativa-rapibnb/bd/logout.php">Cerrar Sesión</a>
