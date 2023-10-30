@@ -39,10 +39,12 @@ if (!$consulta) {
 
 <?php
 
-if (!$_FILES["archivo"]) {
-    echo "Error al cargar archivo";
+//$_FILES['archivo'];
+//var_dump($_FILES); para revisar posibles errores
+if (!isset( $_FILES['archivo'])) {
+    echo "Error no existe archivo";
 }else{
-    $ruta = './../files/'.$user.'/';
+    $ruta = 'files/'.$user.'/';
     $archivo = $ruta . $_FILES["archivo"]["name"];
 
     if (!file_exists($ruta)) {
