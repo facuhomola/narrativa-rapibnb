@@ -33,7 +33,7 @@ if (!isset($user)) {
 <!--Fin cabecera-->
 
 <section>
-  <form class="form-register" enctype="multipart/from-data" autocomplete="off" action="validaralquiler.php" method="post" name="form" id="form">
+  <form class="form-register" enctype="multipart/form-data" autocomplete="off" action="validaralquiler.php" method="post" name="form" id="form">
   <h4>Complete los campos solicitados</h4>
   <input class="controls" type="text" name="titulo" id="titulo" placeholder="Título">
   <textarea class="controls" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="5"></textarea>

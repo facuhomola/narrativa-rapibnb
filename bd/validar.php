@@ -9,7 +9,7 @@ $telefono = $_POST['telefono'];
 $descripcion = $_POST['descripcion'];
 $user = $_POST['user'];
 $pass = $_POST['pass'];
-$arch = $_POST['archivo'];
+$arch = $_FILES['archivo']['name'];
 
 echo "Datos inbresados: <br>"; 
 
@@ -39,12 +39,10 @@ if (!$consulta) {
 
 <?php
 
-//$_FILES['archivo'];
-//var_dump($_FILES); para revisar posibles errores
-if (!isset( $_FILES['archivo'])) {
-    echo "Error no existe archivo";
+if (!$_FILES["archivo"]) {
+    echo "Error al cargar archivo";
 }else{
-    $ruta = 'files/'.$user.'/';
+    $ruta = './../files/'.$user.'/';
     $archivo = $ruta . $_FILES["archivo"]["name"];
 
     if (!file_exists($ruta)) {

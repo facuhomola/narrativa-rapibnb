@@ -37,4 +37,22 @@ if (!$consulta) {
 <?php    
 }
 
+if (!$_FILES["fotos"]) {
+    echo "Error al cargar archivo";
+}else{
+    $ruta = './../files/'.$usuario.'/';
+    $archivo = $ruta . $_FILES["fotos"]["name"];
+
+    if (!file_exists($archivo)) {
+        $resultado = @move_uploaded_file($_FILES["fotos"]["tmp_name"], $archivo);
+        if ($resultado) {
+            echo "Fotos guardadas";
+        }else{
+            echo "Error al guardar fotos";
+        }
+    }else{
+        echo "La foto ya existe";
+    }
+
+}
 ?>
