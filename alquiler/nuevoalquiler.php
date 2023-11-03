@@ -5,12 +5,6 @@
 //Conectar a la base de datos
 include('./../bd/cn.php');
 
-session_start();
-$user = $_SESSION['user'];
-if (!isset($user)) {
-    header("location:/narrativa-rapibnb/bd/login.php");
-}
-
 ?>
 
 
@@ -29,6 +23,10 @@ if (!isset($user)) {
 <!--Cabecera-->
 <?php 
     require('./../includes/header.php');
+    $user = $_SESSION['user'];
+    if (!isset($user)) {
+        header("location:/narrativa-rapibnb/bd/login.php");
+    }
 ?>
 <!--Fin cabecera-->
 
