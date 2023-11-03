@@ -2,22 +2,6 @@
 
 include('bd/cn.php');
 
-session_start();
-$user = $_SESSION['user'];
-if (!isset($user)) {
-    header("location: index.php");
-}else{ //Almacena datos del usuario en sesión
-    $sql = "SELECT * FROM usuarios WHERE user='$user'";
-    $result=mysqli_query($conexion,$sql);
-    $usuario=mysqli_fetch_array($result);
-    $id_user = $usuario['id_user']; 
-    $nombre = $usuario['nombre'];
-    $edad = $usuario['edad'];
-    $telefono = $usuario['telefono'];
-    $descripcion = $usuario['descripcion'];
-    $imagen = $usuario['imagen'];
-}
-
 ?>
 
 
@@ -37,6 +21,20 @@ if (!isset($user)) {
 <!--Cabecera-->
 <?php 
     require('includes/header.php');
+    $user = $_SESSION['user'];
+    if (!isset($user)) {
+        header("location: index.php");
+    }else{ //Almacena datos del usuario en sesión
+        $sql = "SELECT * FROM usuarios WHERE user='$user'";
+        $result=mysqli_query($conexion,$sql);
+        $usuario=mysqli_fetch_array($result);
+        $id_user = $usuario['id_user']; 
+        $nombre = $usuario['nombre'];
+        $edad = $usuario['edad'];
+        $telefono = $usuario['telefono'];
+        $descripcion = $usuario['descripcion'];
+        $imagen = $usuario['imagen'];
+    }
 ?>
 <!--Fin cabecera-->
 
