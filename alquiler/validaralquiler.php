@@ -7,7 +7,6 @@ include('./../bd/cn.php');
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $ubicacion = $_POST['ubicacion'];
-$fotos = $_POST['fotos'];
 $servicios = $_POST['servicios'];
 $costo = $_POST['costo'];
 $tminimo = $_POST['tminimo'];
@@ -25,18 +24,53 @@ $mostrar=mysqli_fetch_array($result);
 $id_user = $mostrar['id_user'];
 
 //insertar valores en tabla alquileres
-$insertar = "INSERT INTO alquileres(titulo, descripcion, ubicacion, fotos, servicios, costo, tminimo, tmaximo, cupo, id_user) VALUES('$titulo', '$descripcion', '$ubicacion', '$fotos', '$servicios', '$costo', '$tminimo', '$tmaximo', '$cupo', '$id_user')";
+$insertar = "INSERT INTO alquileres(titulo, descripcion, ubicacion, servicios, costo, tminimo, tmaximo, cupo, id_user) VALUES('$titulo', '$descripcion', '$ubicacion', '$servicios', '$costo', '$tminimo', '$tmaximo', '$cupo', '$id_user')";
 
 $consulta = mysqli_query($conexion, $insertar);
 if (!$consulta) {
     die("Error en la consulta");
 }else{
-    ?>
+?>
     <h4>Se realizo la publicación correctamente</h4>
     <a href="./../index.php">Volver al Inicio</a>
 <?php    
 }
+?>
 
+<?php
+//SELECT MAX(id) FROM `alquileres` WHERE id_user = 28
+$sql_alquiler = "SELECT MAX(id) FROM alquileres WHERE id_user = '$id_user'";
+$result_alquiler = mysqli_query($conexion, $sql_alquiler);
+$mostrar_alquiler = mysqli_fetch_array($result_alquiler);
+$id_alquiler = $mostrar_alquiler['MAX(id)'];
+
+foreach ($_FILES['archivo']['tmp_name'] as $key => $tmp_name) {
+    if ($_FILES['archivo']['name'][$key]) {
+        
+        $filename = $_FILES['archivo']['name'][$key];
+        $temporal = $_FILES['archivo']['tmp_name'][$key];
+
+        $directorio = "./../files/$usuario/$id_alquiler/";
+
+        if (!file_exists($directorio)) {
+            mkdir($directorio, 0777);
+        }
+
+        $dir = opendir($directorio);
+        $ruta = $directorio . "/" . $filename;
+
+        if (move_uploaded_file($temporal, $ruta)) {
+            echo "El archivo $filename se ha almacenado correctamente";
+        }else{
+            echo "Ocurrio un error";
+        }
+
+        closedir($dir);
+
+    }
+}
+
+/*
 if (!$_FILES["fotos"]) {
     echo "Error al cargar archivo";
 }else{
@@ -55,4 +89,5 @@ if (!$_FILES["fotos"]) {
     }
 
 }
+*/
 ?>
