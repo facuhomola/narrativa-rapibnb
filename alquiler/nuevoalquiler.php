@@ -36,11 +36,11 @@ include('./../bd/cn.php');
   <input class="controls" type="text" name="titulo" id="titulo" placeholder="Título">
   <textarea class="controls" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="5"></textarea>
     <input class="controls" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación">
-    Fotos <input type="file" class="controls" name="fotos" id="fotos">
+    Fotos <input type="file" class="controls" name="archivo[]" id="archivo[]" multiple="">
     <input type="text" name="servicios" placeholder="Servicios" class="controls">
     <input type="number" name="costo" placeholder="$Costo" class="controls">
-    <input type="number" name="tminimo" placeholder="Tiempo minimo" class="controls">
-    <input type="number" name="tmaximo" placeholder="Tiempo máximo" class="controls">
+    <input type="date" name="tminimo" placeholder="Tiempo minimo" class="controls">
+    <input type="date" name="tmaximo" placeholder="Tiempo máximo" class="controls">
     <input type="number" name="cupo" placeholder="Cupo" class="controls">
     <input class="botons" type="submit" value="Publicar">  
   </form>  
