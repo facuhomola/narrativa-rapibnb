@@ -21,22 +21,26 @@ include('bd/cn.php');
 <!--Cabecera-->
 <?php 
     require('includes/header.php');
-    $user = $_SESSION['user'];
-    if (!isset($user)) {
-        header("location: index.php");
-    }else{ //Almacena datos del usuario en sesión
-        $sql = "SELECT * FROM usuarios WHERE user='$user'";
-        $result=mysqli_query($conexion,$sql);
-        $usuario=mysqli_fetch_array($result);
-        $id_user = $usuario['id_user']; 
-        $nombre = $usuario['nombre'];
-        $edad = $usuario['edad'];
-        $telefono = $usuario['telefono'];
-        $descripcion = $usuario['descripcion'];
-        $imagen = $usuario['imagen'];
-    }
 ?>
 <!--Fin cabecera-->
+
+
+<?php
+
+//Datos de usuario
+$name_user = $_GET['duenio'];
+
+$sql = "SELECT * FROM usuarios WHERE user='$name_user'";
+$result=mysqli_query($conexion,$sql);
+$usuario=mysqli_fetch_array($result);
+$id_user = $usuario['id_user']; 
+$nombre = $usuario['nombre'];
+$edad = $usuario['edad'];
+$telefono = $usuario['telefono'];
+$descripcion = $usuario['descripcion'];
+$imagen = $usuario['imagen'];
+
+?>
 
 <!--Perfil-->
 <div class="container-lg">
@@ -44,7 +48,7 @@ include('bd/cn.php');
     <div class="row min-vh-95 mt-2 mb-2 align-items-center align-content-center">
         <div class="col-md-3">
             <div class="text-center">
-              <img src="files/<?php echo $user."/".$imagen;?>" class="rounded-circule mw-50" alt="imagen perfil" style="border-radius: 30%;" height="240px">
+              <img src="files/<?php echo $name_user."/".$imagen;?>" class="rounded-circule mw-50" alt="imagen perfil" style="border-radius: 30%;" height="240px">
             </div>
         </div>
         <div class="col-md-9 mt-md-0">
@@ -101,7 +105,7 @@ include('bd/cn.php');
                             <p class="card-text"> <?php echo $mostrar_alquiler['descripcion']; ?> </p>
                             <p class="card-text"> <?php echo $mostrar_alquiler['ubicacion']; ?> </p>
                             <h5 class="card-title"> <?php echo $mostrar_alquiler['costo']; ?> </h5>
-                            <a href="publicacion.php" class="btn btn-primary">Ver propiedad</a>
+                            <a href="propiedad.php?idalquiler=<?php echo $id_alquiler; ?>" class="btn btn-primary">Ver propiedad</a>
                         </div>
                     </div>
                 </div>
