@@ -100,8 +100,8 @@ include('bd/cn.php');
                             <h5 class="card-title"> <?php echo $mostrar_alquiler['titulo']; ?> </h5>
                             <p class="card-text"> <?php echo $mostrar_alquiler['descripcion']; ?> </p>
                             <p class="card-text"> <?php echo $mostrar_alquiler['ubicacion']; ?> </p>
-                            <h5 class="card-title"> <?php echo $mostrar_alquiler['costo']; ?> </h5>
-                            <a href="publicacion.php" class="btn btn-primary">Ver propiedad</a>
+                            <h5 class="card-title"> $<?php echo $mostrar_alquiler['costo']; ?> </h5>
+                            <a href="propiedad.php?idalquiler=<?php echo $id_alquiler; ?>" class="btn btn-primary">Ver propiedad</a>
                         </div>
                     </div>
                 </div>

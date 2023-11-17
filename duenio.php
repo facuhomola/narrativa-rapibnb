@@ -14,7 +14,7 @@ include('bd/cn.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <title>Rapibnb - Mi Perfil</title>
+    <title>Rapibnb - Perfil de usuario</title>
 </head>
 <body>
 
@@ -97,8 +97,9 @@ $imagen = $usuario['imagen'];
                                 $result_foto = mysqli_query($conexion, $sql_foto);
                                 $mostrar_foto = mysqli_fetch_array(($result_foto));
                                 $img = $mostrar_foto['nombre'];
+                                $ruta = "files/" . $name_user . "/" . $id_alquiler . "/" . $img;
                             ?>
-                            <img src=" <?php echo "files/$user/$id_alquiler/$img"; ?>" class="img-fluid rounded-start" alt="">
+                            <img src=" <?php echo $ruta; ?>" class="img-fluid rounded-start" alt="">
                         </div>
                         <div class="m-3 col-md-4">
                             <h5 class="card-title"> <?php echo $mostrar_alquiler['titulo']; ?> </h5>

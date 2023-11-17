@@ -37,9 +37,25 @@ include('./../bd/cn.php');
   <textarea class="controls" name="descripcion" id="descripcion" placeholder="Descripción" cols="30" rows="5"></textarea>
     <input class="controls" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación">
     Fotos <input type="file" class="controls" name="archivo[]" id="archivo[]" multiple="">
-    <input type="text" name="servicios" placeholder="Servicios" class="controls">
-    <input type="number" name="costo" placeholder="$Costo" class="controls">
+    Servicios: <br>
+    <?php
+      $sql_servicios = "SELECT * FROM servicios";
+      $consulta_servicios = mysqli_query($conexion, $sql_servicios);
+      if ($consulta_servicios) {
+        while ($mostrar_servicio = mysqli_fetch_array($consulta_servicios)) {
+          $servicio = $mostrar_servicio['nombre_servicio'];
+          ?>
+          <input type="checkbox" name="servicios[]" value="<?php echo $servicio; ?>"> <?php echo $servicio; ?> <br>
+          <?php
+        }
+      }else{
+        echo "Ocurrio un error en la consulta <br>";
+      }
+    ?>
+    <input type="number" name="costo" placeholder="Costo" class="controls">
+    Inicio de Alquiler
     <input type="date" name="tminimo" placeholder="Tiempo minimo" class="controls">
+    Fin de Alquiler
     <input type="date" name="tmaximo" placeholder="Tiempo máximo" class="controls">
     <input type="number" name="cupo" placeholder="Cupo" class="controls">
     <input class="botons" type="submit" value="Publicar">  

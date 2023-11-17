@@ -31,7 +31,7 @@ if (!isset($user)) {
 <!--Fin cabecera-->
 
 <section>
-  <form class="form-register" enctype="multipart/form-data" autocomplete="off" action="validar.php" method="post" name="form" id="form">
+  <form class="form-register" enctype="multipart/form-data" autocomplete="on" action="validar.php" method="post" name="form" id="form">
   <h4>Formulario Registro - Complete los campos solicitados</h4>
   <input class="controls" type="text" name="nombre" id="nombre" placeholder="Nombre y Apellido">
     <input class="controls" type="number" name="edad" id="edad" placeholder="Edad">

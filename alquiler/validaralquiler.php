@@ -7,7 +7,10 @@ include('./../bd/cn.php');
 $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $ubicacion = $_POST['ubicacion'];
-$servicios = $_POST['servicios'];
+$servicios = "";
+foreach ($_POST['servicios'] as $valor) {
+    $servicios = $servicios . $valor . " ";
+}
 $costo = $_POST['costo'];
 $tminimo = $_POST['tminimo'];
 $tmaximo = $_POST['tmaximo'];
@@ -24,7 +27,7 @@ $mostrar=mysqli_fetch_array($result);
 $id_user = $mostrar['id_user'];
 
 //insertar valores en tabla alquileres
-$insertar = "INSERT INTO alquileres(titulo, descripcion, ubicacion, servicios, costo, tminimo, tmaximo, cupo, id_user) VALUES('$titulo', '$descripcion', '$ubicacion', '$servicios', '$costo', '$tminimo', '$tmaximo', '$cupo', '$id_user')";
+$insertar = "INSERT INTO alquileres(titulo, descripcion, ubicacion, servicios, costo, tminimo, tmaximo, cupo, id_user, estado_alquiler) VALUES('$titulo', '$descripcion', '$ubicacion', '$servicios', '$costo', '$tminimo', '$tmaximo', '$cupo', '$id_user', 0)";
 
 $consulta = mysqli_query($conexion, $insertar);
 if (!$consulta) {
@@ -68,7 +71,13 @@ foreach ($_FILES['archivo']['tmp_name'] as $key => $tmp_name) {
         }
 
         if (move_uploaded_file($temporal, $ruta)) {
-            echo "El archivo $filename se ha almacenado correctamente";
+            echo "El archivo $filename se ha almacenado correctamente <br>";
+            ?>
+            <script>
+                alert("Se realizo la publicación correctamente - Pulse Aceptar para continuar");
+                window.location.href='./../index.php';
+            </script>
+            <?php
         }else{
             echo "Ocurrio un error";
         }

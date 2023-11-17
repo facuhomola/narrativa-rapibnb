@@ -20,6 +20,13 @@
 
 include('bd/cn.php'); //conexión a base de datos
 
+//consultar si hay sesion iniciada, para poder reservar
+if (isset($_SESSION['user'])) {
+  $user = $_SESSION['user'];
+}else{
+  $user = 0;
+}
+
 //Datos del alquiler
 $idalquiler = $_GET['idalquiler'];
 $sql_alquiler = "SELECT * FROM alquileres WHERE id = '$idalquiler'";
@@ -51,30 +58,31 @@ $ruta = "files/" . $name_user . "/" . "$idalquiler" . "/";
 
 ?>
 
-<!--Carousel-->
-<div id="carouselExampleIndicators" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+<div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <?php
-    while($mostrar_foto = mysqli_fetch_array($result_foto)){
-        $foto_nombre = $mostrar_foto['nombre'];
-        ?>
-        <div class="carousel-item active">
-            <img src=" <?php echo $ruta . $foto_nombre; ?> " class="d-block w-100" alt="...">
-        </div>
+    $mostrar_foto = mysqli_fetch_array($result_foto);
+    $foto_nombre = $mostrar_foto['nombre'];
+    ?>
+    <div class="carousel-item active">
+      <img src=" <?php echo $ruta . $foto_nombre; ?> " class="d-block w-100" alt="...">
+    </div>
+    <?php
+    while ($mostrar_foto = mysqli_fetch_array($result_foto)) {
+      $foto_nombre = $mostrar_foto['nombre'];
+      ?>
+      <div class="carousel-item">
+        <img src="<?php echo $ruta . $foto_nombre; ?>" class="d-block w-100" alt="...">
+      </div>
     <?php
     }
     ?>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -101,13 +109,28 @@ $ruta = "files/" . $name_user . "/" . "$idalquiler" . "/";
                 <p class="text-muted">Fecha de inicio: <?php echo $tminimo; ?> </p> 
                 <p class="text-muted">Fecha de fin: <?php echo $tmaximo; ?> </p>
                 <p><b>Cupo: </b> <?php echo $cupo; ?> </p>
-                <p><b>Dueño/a</b> Dueño/a: <?php echo $nombre; ?> - <a href="duenio.php?duenio=<?php $name_user; ?>">Ver Perfil</a> </p> 
-                <button type="button" class="ml-2 btn btn-primary">Alquilar</button>
+                <p><b>Dueño/a</b> Dueño/a: <?php echo $nombre; ?> - <a href="duenio.php?duenio=<?php echo $name_user; ?>">Ver Perfil</a> </p> 
+                <?php
+                  if ($user != 0) {
+                    ?>
+                    <a class="btn btn-primary" href="reservar.php?idalquiler=<?php echo $idalquiler; ?>&solicitante=<?php echo $user; ?>&duenio=<?php echo $name_user; ?>">Reservar</a>
+                  <?php
+                  }else{
+                    ?>
+                    <button class="btn btn-primary" onclick="novalido();">Reservar</button>
+                  <?php
+                  }
+                ?>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+  function novalido(){
+    alert("Debe iniciar sesión para reservar esta propiedad - Pulse Aceptar para continuar");
+  }
+</script>
 
 <!--Pie de pagina-->
 <?php    

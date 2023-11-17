@@ -34,35 +34,32 @@ session_start();
           <?php
           }else{
           ?>
-            <li class="nav-item">
-              <a class="nav-link" href="/narrativa-rapibnb/perfil.php">Mi perfil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/narrativa-rapibnb/alquiler/nuevoalquiler.php">Nueva Publicación</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/narrativa-rapibnb/bd/logout.php">Cerrar Sesión</a>
-            </li>
-          <?php
-          }
-          ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Más opciones
+              Perfil
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Lo más buscado</a></li>
-              <li><a class="dropdown-item" href="#">Lugares</a></li>
+              <li><a class="dropdown-item" href="/narrativa-rapibnb/perfil.php">Mí Perfil</a></li>
+              <li><a class="dropdown-item" href="/narrativa-rapibnb/notificaciones.php">Notificaciones</a></li>
+              <li><a class="dropdown-item" href="/narrativa-rapibnb/alquiler/nuevoalquiler.php">Nueva Publicación</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#">Terminos y Condiciones</a></li>
+              <li><a class="dropdown-item" href="/narrativa-rapibnb/verificar.php">Verificar Perfil</a></li>
+              <li><a class="dropdown-item" href="/narrativa-rapibnb/bd/logout.php">Cerrar Sesión</a></li>
             </ul>
           </li>
+          <?php
+          }
+          ?>
+          <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="nav-link" href="administrador/admin.php">Administrador</a></li>
         </ul>
-        <form class="d-flex mt-3" role="search">
+        <form class="d-flex mt-3" role="search" action="/narrativa-rapibnb/buscar.php" method="post">
           <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-          <button class="btn btn-success" type="submit">Buscar</button>
+          <button class="btn btn-success" type="submit" name="buscar" id="buscar">Buscar</button>
         </form>
       </div>
     </div>
